@@ -35,9 +35,10 @@ spring:
     password: 1111
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         default_batch_fetch_size: 100
-
+  sql.init.mode: always
+  test.database.replace: none
 
