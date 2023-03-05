@@ -1,0 +1,43 @@
+debug: false
+management.endpoints.web.exposure.include: "*"
+
+logging:
+  level:
+    com.example.forum: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/forum
+    username: postgres
+    password: 1111
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+  sql.init.mode: always     # data.sql
+
+---
+
+spring:
+  config.activate.on-profile: testdb
+  datasource:
+    url: jdbc:mysql://localhost:3306/forum
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1111
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+
+
