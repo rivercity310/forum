@@ -6,6 +6,7 @@ import com.example.forum.domain.ArticleComment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.Commit;
@@ -18,7 +19,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class)
-@ActiveProfiles({"testdb"})
+@ActiveProfiles("testdb")
 @Transactional
 @SpringBootTest
 class JpaRepositoryTest {
