@@ -1,6 +1,3 @@
-# this dummy data is created by mockaroo
-
-# article dummy data (130개)
 insert into article (title, content, created_by, created_at, modified_by, modified_at, hashtag) values ('H1', 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', 'Joseito', '2022-04-21', 'Shae', '2022-06-17', '#88bd2d');
 insert into article (title, content, created_by, created_at, modified_by, modified_at, hashtag) values ('TL', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.', 'Mechelle', '2023-02-28', 'Suki', '2022-03-29', '#43bbfb');
 insert into article (title, content, created_by, created_at, modified_by, modified_at, hashtag) values ('Town Car', 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 'Theodore', '2022-07-05', 'Spence', '2022-07-11', '#cf63e0');
@@ -133,7 +130,6 @@ insert into article (title, content, created_by, created_at, modified_by, modifi
 insert into article (title, content, created_by, created_at, modified_by, modified_at, hashtag) values ('Diablo', 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 'Austina', '2022-08-15', 'Agnese', '2022-03-22', '#3adc45');
 
 
-# article_comment dummy data (300개)
 insert into article_comment (article_id, content, created_by, created_at, modified_by, modified_at) values (35, 'JTDJTUD33DD732001', 'Roch', '2022-03-25', 'Hortensia', '2023-02-06');
 insert into article_comment (article_id, content, created_by, created_at, modified_by, modified_at) values (14, '3C6TD4HT5CG821366', 'Myriam', '2022-08-05', 'Dmitri', '2022-07-09');
 insert into article_comment (article_id, content, created_by, created_at, modified_by, modified_at) values (43, '1G6AB5R32D0948739', 'Kippie', '2022-07-31', 'Sharleen', '2022-03-14');

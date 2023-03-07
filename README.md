@@ -5,8 +5,8 @@
 Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 과정 또한 거쳐본다.
 <br/>
 
-프로젝트는 구현 및 테스트, 권한 인증 및 보안, 배포 자동화 흐름으로 이어지며, 
-Github Flow 방법론에 따라 main, feature 두 브랜치만을 구성하여 개발을 진행해나가며, 
+프로젝트는 구현 및 테스트, 권한 인증 및 보안, 배포 자동화 흐름으로 진행된다. <br/>
+또한 Github Flow 방법론에 따라 main, feature 두 브랜치만을 구성하여 개발을 진행해나가며, 
 생성된 이슈 번호를 커밋 메세지 헤더로 지정하는 관례를 따른다.
 <br/>
 
@@ -18,7 +18,7 @@ Github Flow 방법론에 따라 main, feature 두 브랜치만을 구성하여 �
 - Language: Java 17, Kotlin
 - Test: JUnit5, Mockito
 - DB: MySQL, PostgreSQL
-- JSON API: Rest Repositories + HAL Explorer
+- API: Rest Repositories + HAL Explorer, Swagger 3.0
 - 보안/인증: Spring Security
 - 생산성: Lombok, Spring Boot Actuator/DevTools
 - 배포: Heroku
