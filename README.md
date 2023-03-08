@@ -16,8 +16,8 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 ## Tech Stack & Version
 - Framework: Spring Boot 3.0.3
 - Language: Java 17, Kotlin
-- Test: JUnit5, Mockito
-- DB: MySQL, PostgreSQL
+- Test: JUnit5, MockMvc
+- DB/관련기술: MySQL, PostgreSQL, QueryDSL
 - API: Rest Repositories + HAL Explorer, Swagger 3.0
 - 보안/인증: Spring Security
 - 생산성: Lombok, Spring Boot Actuator/DevTools
@@ -25,3 +25,35 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 - 기타 도구: Vim, Postman, GitKraken, Thymeleaf, Bootstrap 5.2
 
 ---
+
+## Issues & Solve
+### Spring Boot 3.0 QueryDSL 적용
+- Build: Gradle -> Intellij IDEA
+- build.gradle
+```yaml
+dependencies {
+  // ...
+  // QueryDSL 의존성 추가
+  implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+  implementation 'com.querydsl:querydsl-core'
+  implementation 'com.querydsl:querydsl-collections'
+  annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+  annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+  annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+}
+
+// QClass 경로 지정
+def generated = 'src/main/generated'
+
+tasks.withType(JavaCompile) {
+  options.getGeneratedSourceOutputDirectory().set(file(generated))
+}
+
+sourceSets {
+  main.java.srcDirs += [ generated ]
+}
+
+clean {
+  delete file(generated)
+}
+```
