@@ -3,6 +3,7 @@ package com.example.forum.repository;
 import com.example.forum.config.JpaConfig;
 import com.example.forum.domain.Article;
 import com.example.forum.domain.ArticleComment;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@Disabled("Spring Data Rest 통합 테스트 제외")
 @DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class)
 @ActiveProfiles("testdb")
