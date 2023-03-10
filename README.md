@@ -22,7 +22,7 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 - 보안/인증: Spring Security
 - 생산성: Lombok, Spring Boot Actuator/DevTools
 - 배포: Heroku
-- 기타 도구: Vim, Postman, GitKraken, Thymeleaf, Bootstrap 5.2
+- 기타 도구: Vim, GitKraken, Thymeleaf, Bootstrap 5.3
 
 ---
 
@@ -30,7 +30,8 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 ### Spring Boot 3.0 QueryDSL 적용
 - Build: Gradle -> Intellij IDEA
 - build.gradle
-```yaml
+
+```text
 dependencies {
   // ...
   // QueryDSL 의존성 추가
