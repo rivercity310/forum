@@ -16,7 +16,7 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 ## Tech Stack & Version
 - Framework: Spring Boot 3.0.3
 - Language: Java 17, Kotlin
-- Test: JUnit5, MockMvc
+- Test: JUnit5, Mockito
 - DB/관련기술: MySQL, PostgreSQL, QueryDSL
 - API: Rest Repositories + HAL Explorer, Swagger 3.0
 - 보안/인증: Spring Security
