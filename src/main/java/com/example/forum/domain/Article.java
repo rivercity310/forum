@@ -8,13 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy"),
 })
 @Entity
 public class Article extends AuditingFields {
@@ -30,18 +28,23 @@ public class Article extends AuditingFields {
     private String hashtag;
 
     @ToString.Exclude
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-    private Article(String title, String content, String hashtag) {
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;
+
+    private Article(UserAccount userAccount, String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
+        this.userAccount = userAccount;
     }
 
-    public static Article of(String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag) {
+        return new Article(userAccount, title, content, hashtag);
     }
 
     @Override

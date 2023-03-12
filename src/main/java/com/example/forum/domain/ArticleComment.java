@@ -6,12 +6,11 @@ import lombok.*;
 import java.util.Objects;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {
         @Index(columnList = "content"),
         @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
 })
 @Entity
 public class ArticleComment extends AuditingFields {
@@ -19,20 +18,25 @@ public class ArticleComment extends AuditingFields {
     private Long id;
 
     @Setter
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Article article;
-
-    @Setter
     @Column(nullable = false, length = 500)
     private String content;
 
-    private ArticleComment(Article article, String content) {
+    @Setter
+    @ManyToOne(optional = false)
+    private Article article;
+
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;
+
+    private ArticleComment(Article article, String content, UserAccount userAccount) {
         this.article = article;
         this.content = content;
+        this.userAccount = userAccount;
     }
 
-    public static ArticleComment of(Article article, String content) {
-        return new ArticleComment(article, content);
+    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
+        return new ArticleComment(article, content, userAccount);
     }
 
     @Override
