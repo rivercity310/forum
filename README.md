@@ -25,9 +25,12 @@ Kanban Board를 구성하여 프로젝트 진행 과정 전반을 관리하는 �
 - 기타 도구: Vim, GitKraken, Thymeleaf, Bootstrap 5.3
 
 ---
+## ERD
+![forum-erd](https://user-images.githubusercontent.com/95991654/224528500-f01aa2b4-d204-4643-af02-8d275aeae4d7.svg)
+---
 
 ## Issues & Solve
-### Spring Boot 3.0 QueryDSL 적용
+### 1. Spring Boot 3.0 QueryDSL 적용
 - Build: Gradle -> Intellij IDEA
 - build.gradle
 
@@ -56,5 +59,22 @@ sourceSets {
 
 clean {
   delete file(generated)
+}
+```
+
+<br/>
+
+### 2. Spring Security 개편
+기존 WebSecurityConfigurerAdapter의 configure 메소드를 오버라이딩하는 방식에서 
+SecurityFilterChain을 Bean으로 등록하는 방식으로 변경됨 <br/>
+https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .formLogin()
+            .and()
+            .build();
 }
 ```
