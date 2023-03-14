@@ -13,7 +13,7 @@ class Article(
     @JoinColumn(name = "user_account_id")
     val userAccount : UserAccount,
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article", cascade = [CascadeType.ALL])
     val articleComments : Set<ArticleComment> = linkedSetOf()
 
 ) : AuditingFields()
