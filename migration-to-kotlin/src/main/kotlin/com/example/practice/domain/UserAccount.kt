@@ -1,5 +1,6 @@
 package com.example.practice.domain
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -16,10 +17,10 @@ class UserAccount(
     @Column(length = 100) val nickname : String,
     @Column(length = 100) val memo : String,
 
-    @OneToMany(mappedBy = "userAccount")
+    @OneToMany(mappedBy = "userAccount", cascade = [CascadeType.ALL])
     val articles : Set<Article> = linkedSetOf(),
 
-    @OneToMany(mappedBy = "commentUserAccount")
+    @OneToMany(mappedBy = "commentUserAccount", cascade = [CascadeType.ALL])
     val userComments : Set<ArticleComment> = linkedSetOf()
 
 ) : AuditingFields()
