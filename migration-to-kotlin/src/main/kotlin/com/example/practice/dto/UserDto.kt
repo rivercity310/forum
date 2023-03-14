@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotNull
 
 class UserDto {
-    data class UserSignUp(
+    data class SignUp(
         @field:NotNull var userId : String,
         @field:NotNull var userPassword : String,
         @field:Email var email : String?,
@@ -21,5 +21,19 @@ class UserDto {
                 memo = memo ?: "No Memo"
             )
         }
+    }
+
+    data class Res(
+        val userId : String,
+        val email : String,
+        val nickname : String,
+        val memo : String
+    ) {
+        constructor(entity : UserAccount) : this(
+            userId = entity.userId,
+            email = entity.email,
+            nickname = entity.nickname,
+            memo = entity.memo
+        )
     }
 }

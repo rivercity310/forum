@@ -1,5 +1,3 @@
 package com.example.practice.exception
 
-class UserAlreadyExistsException(val userId : String) : RuntimeException() {
-
-}
+class UserAlreadyExistsException(val userId : String) : RuntimeException()
