@@ -1,3 +1,3 @@
 package com.example.practice.exception
 
-class UserNotFoundException(private val userId : String) : RuntimeException()
+class UserNotFoundException(val userId : String) : RuntimeException()
