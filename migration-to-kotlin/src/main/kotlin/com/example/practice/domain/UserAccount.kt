@@ -6,8 +6,15 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.Index
 import jakarta.persistence.OneToMany
+import jakarta.persistence.Table
 
+@Table(indexes = [
+    Index(columnList = "email", unique = true),
+    Index(columnList = "createdAt"),
+    Index(columnList = "createdBy")
+])
 @Entity
 class UserAccount(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id : Long? = null,
@@ -17,10 +24,10 @@ class UserAccount(
     @Column(length = 100) val nickname : String,
     @Column(length = 100) val memo : String,
 
-    @OneToMany(mappedBy = "userAccount", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "userAccount", orphanRemoval = true)
     val articles : Set<Article> = linkedSetOf(),
 
-    @OneToMany(mappedBy = "commentUserAccount", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "commentUserAccount", orphanRemoval = true)
     val userComments : Set<ArticleComment> = linkedSetOf()
 
 ) : AuditingFields()
