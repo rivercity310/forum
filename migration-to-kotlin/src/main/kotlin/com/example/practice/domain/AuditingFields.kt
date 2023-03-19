@@ -16,19 +16,19 @@ import java.time.LocalDateTime
 abstract class AuditingFields(
     @CreatedBy
     @Column(nullable = false, updatable = false)
-    protected var createdBy : String? = null,
+    var createdBy : String? = null,
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    protected var createdAt : LocalDateTime? = null,
+    var createdAt : LocalDateTime? = null,
 
     @LastModifiedBy
     @Column(nullable = false)
-    protected var modifiedBy : String? = null,
+    var modifiedBy : String? = null,
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @LastModifiedDate
     @Column(nullable = false)
-    protected var modifiedAt : LocalDateTime? = null
+    var modifiedAt : LocalDateTime? = null
 )

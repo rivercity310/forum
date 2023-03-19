@@ -5,7 +5,7 @@ import jakarta.persistence.*
 @Table(indexes = [Index(columnList = "title"), Index(columnList = "hashtag")])
 @Entity
 class Article(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id : Long,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id : Long = 0L,
     @Column(length = 10000, nullable = false) val content : String,
     @Column(length = 255, nullable = false) val title : String,
     @Column(length = 255) val hashtag : String,
@@ -17,4 +17,15 @@ class Article(
     @OneToMany(mappedBy = "article", orphanRemoval = true)
     val articleComments : Set<ArticleComment> = linkedSetOf()
 
-) : AuditingFields()
+) : AuditingFields() {
+    companion object {
+        internal fun of(userAccount: UserAccount, title: String, content: String, hashtag: String) : Article {
+            return Article(
+                userAccount = userAccount,
+                title = title,
+                content = content,
+                hashtag = hashtag
+            )
+        }
+    }
+}
