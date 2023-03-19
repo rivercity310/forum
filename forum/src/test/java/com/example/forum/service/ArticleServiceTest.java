@@ -4,7 +4,6 @@ import com.example.forum.domain.Article;
 import com.example.forum.domain.UserAccount;
 import com.example.forum.domain.type.SearchType;
 import com.example.forum.dto.ArticleDto;
-import com.example.forum.dto.ArticleUpdateDto;
 import com.example.forum.dto.ArticleWithCommentsDto;
 import com.example.forum.dto.UserAccountDto;
 import com.example.forum.repository.ArticleRepository;
