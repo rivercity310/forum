@@ -26,7 +26,7 @@ class UserAccount(
     @OneToMany(mappedBy = "userAccount", orphanRemoval = true)
     val articles : Set<Article> = linkedSetOf(),
 
-    @OneToMany(mappedBy = "commentUserAccount", orphanRemoval = true)
+    @OneToMany(mappedBy = "userAccount", orphanRemoval = true)
     val userComments : Set<ArticleComment> = linkedSetOf()
 
 ) : AuditingFields()
