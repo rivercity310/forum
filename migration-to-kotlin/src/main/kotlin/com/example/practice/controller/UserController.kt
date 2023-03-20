@@ -4,6 +4,7 @@ import com.example.practice.common.PageRequest
 import com.example.practice.dto.UserDto
 import com.example.practice.service.UserService
 import jakarta.validation.Valid
+import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(private val userService: UserService) {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    internal fun createUser(@RequestBody @Valid dto : UserDto.SignUp) : Long {
+    fun createUser(@RequestBody @Valid dto : UserDto.SignUp) : Long {
         return userService.createUser(dto)
     }
 

@@ -27,6 +27,7 @@ dependencies {
     implementation("org.springframework.data:spring-data-rest-hal-explorer")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly ("com.mysql:mysql-connector-j")
