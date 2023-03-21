@@ -7,7 +7,13 @@ import lombok.*;
 
 public class UserDto {
 
-    public record SignUp(@NotNull String userId, @NotNull String userPassword, @Email String email, String nickname, String memo) {
+    @Getter
+    public static class SignUp {
+        @NotNull private final String userId;
+        @NotNull @Setter private String userPassword;
+        @Email private final String email;
+        private @Setter String nickname;
+        private @Setter String memo;
         @Builder
         public SignUp(String userId, String userPassword, String email, String nickname, String memo) {
             this.userId = userId;
@@ -22,15 +28,21 @@ public class UserDto {
         }
     }
 
-    @Getter @Setter
+    @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UserGetReq {
-        @Email private String email;
+        @Email @Setter private String email;
 
         public UserGetReq(String email) { this.email = email; }
     }
 
-    public record UserGetRes(String userId, String email, String nickname, String memo) {
+    @Getter
+    public static class UserGetRes {
+        private final String userId;
+        private final String email;
+        private final String nickname;
+        private final String memo;
+
         @Builder
         public UserGetRes(String userId, String email, String nickname, String memo) {
             this.userId = userId;

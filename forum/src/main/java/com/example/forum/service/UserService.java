@@ -6,6 +6,7 @@ import com.example.forum.exception.UserAlreadyExistsException;
 import com.example.forum.exception.UserNotFoundException;
 import com.example.forum.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +20,11 @@ public class UserService {
     }
 
     public Long createUser(UserDto.SignUp dto) {
-        if (userAccountRepository.findByUserId(dto.userId()).isPresent())
-            throw new UserAlreadyExistsException(dto.userId());
+        if (userAccountRepository.findByUserId(dto.getUserId()).isPresent())
+            throw new UserAlreadyExistsException(dto.getUserId());
+
+        String hashpw = BCrypt.hashpw(dto.getUserPassword(), BCrypt.gensalt());
+        dto.setUserPassword(hashpw);
 
         userAccountRepository.save(dto.toEntity());
         return 1L;
@@ -31,6 +35,7 @@ public class UserService {
         UserAccount user = userAccountRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException(email));
 
+        System.out.println(user.getUserPassword());
         return UserDto.UserGetRes.from(user);
     }
 }
