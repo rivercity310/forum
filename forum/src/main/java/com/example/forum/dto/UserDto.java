@@ -8,12 +8,14 @@ import lombok.*;
 public class UserDto {
 
     @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class SignUp {
-        @NotNull private final String userId;
+        @NotNull private String userId;
         @NotNull @Setter private String userPassword;
-        @Email private final String email;
+        @Email private String email;
         private @Setter String nickname;
         private @Setter String memo;
+
         @Builder
         public SignUp(String userId, String userPassword, String email, String nickname, String memo) {
             this.userId = userId;
