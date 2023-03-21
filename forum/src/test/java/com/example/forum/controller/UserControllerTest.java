@@ -1,7 +1,6 @@
 package com.example.forum.controller;
 
 import com.example.forum.config.SecurityConfig;
-import com.example.forum.dto.UserDto;
 import com.example.forum.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -15,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,23 +30,24 @@ class UserControllerTest {
     public void createTest() throws Exception {
         // given
         Map<String, String> info = new LinkedHashMap<>();
-        info.put("userId", "111");
-        info.put("userPassword", "111");
-        info.put("email", "asad@asd.com");
-        info.put("nickname", "111");
-        info.put("memo", "111");
+        info.put("userId", "111") ;
+        info.put("userPassword", "222");
+        info.put("email", "h970126@gmail.com");
+        info.put("nickname", "asdasd");
+        info.put("memo", "asdasd");
 
-        String str = objectMapper.writeValueAsString(info);
-        System.out.println(str);
+        given(userService.createUser(any())).willReturn(1L);
 
         // when & then
         mvc.perform(post("/user/create")
-                .content(str)
+                .content(objectMapper.writeValueAsString(info))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andDo(print());
+
+        then(userService).should().createUser(any());
     }
 
     @Test
@@ -55,6 +56,8 @@ class UserControllerTest {
         Map<String, String> info = new LinkedHashMap<>();
         info.put("email", "h970126@gmail.com");
 
+        given(userService.getUser(any())).willReturn(any());
+
         // when & then
         mvc.perform(post("/user")
                 .content(objectMapper.writeValueAsString(info))
@@ -62,5 +65,7 @@ class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
+
+        then(userService).should().getUser(any());
     }
 }
