@@ -9,19 +9,19 @@ import java.util.Objects;
 @Getter
 @ToString(callSuper = true)
 @Table(indexes = {
-        @Index(columnList = "email", unique = true),
+        @Index(columnList = "email"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class UserAccount extends AuditingFields {
-    @Id @Column(length = 50)
+    @Id @Column(length = 50, nullable = false)
     private String userId;
 
     @Setter @Column(nullable = false)
     private String userPassword;
-    @Setter @Column(length = 100)
+    @Setter @Column(length = 100, nullable = false, unique = true)
     private String email;
     @Setter @Column(length = 100)
     private String nickname;

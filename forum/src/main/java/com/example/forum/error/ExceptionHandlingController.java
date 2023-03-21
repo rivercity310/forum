@@ -1,6 +1,7 @@
 package com.example.forum.error;
 
 import com.example.forum.exception.UserAlreadyExistsException;
+import com.example.forum.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,13 @@ public class ExceptionHandlingController {
     protected ErrorResponse handleUserAlreadyExistsException(UserAlreadyExistsException e) {
         ErrorCode errorCode = ErrorCode.USER_ALREADY_EXISTS;
         log.error("User Id Duplication : " + e.getUserId());
+        return buildError(errorCode);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ErrorResponse handleUserNotFoundException(UserNotFoundException e) {
+        ErrorCode errorCode = ErrorCode.USER_NOT_FOUND;
         return buildError(errorCode);
     }
 
