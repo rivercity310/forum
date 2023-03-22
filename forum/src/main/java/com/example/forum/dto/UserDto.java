@@ -6,36 +6,44 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 public class UserDto {
-
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class SignUp {
         @NotNull private String userId;
         @NotNull @Setter private String userPassword;
         @Email private String email;
-        private @Setter String nickname;
-        private @Setter String memo;
+        @Setter private String nickname;
+        @Setter private String memo;
+        @Setter private String role;
 
         @Builder
-        public SignUp(String userId, String userPassword, String email, String nickname, String memo) {
+        public SignUp(String userId, String userPassword, String email, String nickname, String memo, String role) {
             this.userId = userId;
             this.userPassword = userPassword;
             this.email = email;
             this.nickname = nickname;
             this.memo = memo;
+            this.role = role;
         }
 
         public UserAccount toEntity() {
-            return UserAccount.of(userId, userPassword, email, nickname, memo);
+            return UserAccount.of(userId, userPassword, email, nickname, memo, role);
         }
     }
 
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UserGetReq {
-        @Email @Setter private String email;
+        private String userId;
 
-        public UserGetReq(String email) { this.email = email; }
+        public UserGetReq(String userId) { this.userId = userId; }
+    }
+
+    @Getter @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class UserLoginReq {
+        private String userId;
+        private String password;
     }
 
     @Getter

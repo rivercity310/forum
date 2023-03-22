@@ -59,7 +59,8 @@ public record UserAccountDto(
                 userPassword,
                 email,
                 nickname,
-                memo
+                memo,
+                "USER"
         );
     }
 }

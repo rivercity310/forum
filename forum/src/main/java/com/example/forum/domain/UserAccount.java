@@ -2,8 +2,15 @@ package com.example.forum.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Getter
@@ -15,7 +22,7 @@ import java.util.Objects;
 })
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class UserAccount extends AuditingFields {
+public class UserAccount extends AuditingFields implements UserDetails {
     @Id @Column(length = 50, nullable = false)
     private String userId;
 
@@ -27,6 +34,9 @@ public class UserAccount extends AuditingFields {
     private String nickname;
     @Setter
     private String memo;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
     private UserAccount(
             String userId,
@@ -50,7 +60,8 @@ public class UserAccount extends AuditingFields {
             String userPassword,
             String email,
             String nickname,
-            String memo
+            String memo,
+            String role
     ) {
         return UserAccount.of(
                 userId,
@@ -58,9 +69,11 @@ public class UserAccount extends AuditingFields {
                 email,
                 nickname,
                 memo,
-                null
+                null,
+                role
         );
     }
+
 
     public static UserAccount of(
             String userId,
@@ -68,9 +81,10 @@ public class UserAccount extends AuditingFields {
             String email,
             String nickname,
             String memo,
-            String createdBy
+            String createdBy,
+            String role
     ) {
-        return new UserAccount(
+        UserAccount userAccount = new UserAccount(
                 userId,
                 userPassword,
                 email,
@@ -78,6 +92,9 @@ public class UserAccount extends AuditingFields {
                 memo,
                 createdBy
         );
+
+        userAccount.getRoles().add(role);
+        return userAccount;
     }
 
     @Override
@@ -90,5 +107,42 @@ public class UserAccount extends AuditingFields {
     @Override
     public int hashCode() {
         return Objects.hash(userId);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getPassword() {
+        return this.userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.userId;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

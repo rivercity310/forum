@@ -2,6 +2,7 @@ package com.example.forum.error;
 
 import com.example.forum.exception.UserAlreadyExistsException;
 import com.example.forum.exception.UserNotFoundException;
+import com.example.forum.exception.UserPasswordNotEqualsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,13 @@ public class ExceptionHandlingController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ErrorResponse handleUserNotFoundException(UserNotFoundException e) {
         ErrorCode errorCode = ErrorCode.USER_NOT_FOUND;
+        return buildError(errorCode);
+    }
+
+    @ExceptionHandler(UserPasswordNotEqualsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ErrorResponse handleUserPasswordNotEqualsException(UserPasswordNotEqualsException e) {
+        ErrorCode errorCode = ErrorCode.USER_PASSWORD_FAIL;
         return buildError(errorCode);
     }
 
