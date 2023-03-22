@@ -164,7 +164,8 @@ class ArticleServiceTest {
                 "password",
                 "uno@email.com",
                 "Uno",
-                null
+                "memo",
+                "USER"
         );
     }
 
