@@ -1,6 +1,5 @@
 package com.example.forum.dto;
 
-import java.io.Serializable;
 
 public record ArticleUpdateDto(
         String title,
