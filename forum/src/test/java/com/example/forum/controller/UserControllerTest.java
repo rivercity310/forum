@@ -1,6 +1,7 @@
 package com.example.forum.controller;
 
 import com.example.forum.config.SecurityConfig;
+import com.example.forum.jwt.JwtTokenProvider;
 import com.example.forum.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ class UserControllerTest {
     @Autowired private MockMvc mvc;
     @Autowired private ObjectMapper objectMapper;
     @MockBean private UserService userService;
+    @MockBean private JwtTokenProvider jwtTokenProvider;
 
     @Test
     public void createTest() throws Exception {
@@ -54,7 +56,7 @@ class UserControllerTest {
     public void getUserTest() throws Exception {
         // given
         Map<String, String> info = new LinkedHashMap<>();
-        info.put("email", "h970126@gmail.com");
+        info.put("userId", "h970126");
 
         given(userService.getUser(any())).willReturn(any());
 
@@ -62,6 +64,7 @@ class UserControllerTest {
         mvc.perform(post("/user")
                 .content(objectMapper.writeValueAsString(info))
                 .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Bearer " + anyString())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());

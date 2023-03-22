@@ -167,7 +167,8 @@ class ArticleCommentServiceTest {
                 "password",
                 "h970126@gmail.com",
                 "seungsu",
-                null
+                "gg",
+                "USER"
         );
     }
 }

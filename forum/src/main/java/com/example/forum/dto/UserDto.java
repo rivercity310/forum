@@ -2,6 +2,7 @@ package com.example.forum.dto;
 
 import com.example.forum.domain.UserAccount;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -34,16 +35,18 @@ public class UserDto {
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UserGetReq {
-        private String userId;
+        @NotEmpty private String userId;
 
-        public UserGetReq(String userId) { this.userId = userId; }
+        public UserGetReq(String userId, String role) {
+            this.userId = userId;
+        }
     }
 
     @Getter @Setter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class UserLoginReq {
-        private String userId;
-        private String password;
+        @NotEmpty private String userId;
+        @NotEmpty private String password;
     }
 
     @Getter

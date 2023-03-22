@@ -19,9 +19,8 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto.UserGetRes getUser(@Valid @RequestBody UserDto.UserGetReq dto) {
-        System.out.println(dto.getUserId());
-        return userService.getUser(dto.getUserId());
+    public ResponseEntity<UserDto.UserGetRes> getUser(@Valid @RequestBody UserDto.UserGetReq dto) {
+        return ResponseEntity.ok(userService.getUser(dto));
     }
 
     @PostMapping("/create")
@@ -30,15 +29,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public TokenInfo login(@RequestBody UserDto.UserLoginReq dto) {
+    public TokenInfo login(@Valid @RequestBody UserDto.UserLoginReq dto) {
         String userId = dto.getUserId();
         String password = dto.getPassword();
-        TokenInfo tokenInfo = userService.login(userId, password);
-        return tokenInfo;
-    }
-
-    @PostMapping("/test")
-    public String test() {
-        return "success";
+        return userService.login(userId, password);
     }
 }

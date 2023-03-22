@@ -38,11 +38,10 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserDto.UserGetRes getUser(String userId) {
-        UserAccount user = userAccountRepository.findByUserId(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+    public UserDto.UserGetRes getUser(UserDto.UserGetReq dto) {
+        UserAccount user = userAccountRepository.findByUserId(dto.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(dto.getUserId()));
 
-        System.out.println(user.getUserPassword());
         return UserDto.UserGetRes.from(user);
     }
 
