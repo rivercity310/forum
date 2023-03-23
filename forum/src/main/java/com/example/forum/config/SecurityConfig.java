@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .requestMatchers("/user/create", "/user/login").permitAll()
-                .requestMatchers("/user", "/user/test").hasRole("USER")
+                .requestMatchers("/user", "/user/memo").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)

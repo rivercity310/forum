@@ -45,6 +45,14 @@ public class UserService {
         return UserDto.UserGetRes.from(user);
     }
 
+    public Long changeMemo(UserDto.ChangeMemoReq dto) {
+        UserAccount user = userAccountRepository.findByUserId(dto.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(dto.getUserId()));
+
+        user.setMemo(dto.getMemo());
+        return 1L;
+    }
+
     public TokenInfo login(String userId, String password) {
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
         // 이때 authentication 은 인증 여부를 확인하는 authenticated 값이 false

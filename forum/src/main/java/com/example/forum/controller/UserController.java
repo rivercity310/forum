@@ -29,9 +29,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public TokenInfo login(@Valid @RequestBody UserDto.UserLoginReq dto) {
+    public ResponseEntity<TokenInfo> login(@Valid @RequestBody UserDto.UserLoginReq dto) {
         String userId = dto.getUserId();
         String password = dto.getPassword();
-        return userService.login(userId, password);
+        return ResponseEntity.ok(userService.login(userId, password));
+    }
+
+    @PostMapping("/memo")
+    public ResponseEntity<Long> changeMemo(@Valid @RequestBody UserDto.ChangeMemoReq dto) {
+        return ResponseEntity.ok(userService.changeMemo(dto));
     }
 }

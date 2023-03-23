@@ -49,6 +49,13 @@ public class UserDto {
         @NotEmpty private String password;
     }
 
+    @Getter @Setter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class ChangeMemoReq {
+        @NotEmpty private String userId;
+        @NotEmpty private String memo;
+    }
+
     @Getter
     public static class UserGetRes {
         private final String userId;
