@@ -24,7 +24,7 @@ spring:
         format_sql: true
         default_batch_fetch_size: 100
 
-  #sql.init.mode: always     # data.sql
+  sql.init.mode: always     # data.sql
 
   data.rest:
     base-path: /api
