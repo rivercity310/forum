@@ -43,6 +43,10 @@ server:
     key-store-type: PKCS12
     key-store-password: 8452994ash!
     key-alias: kanu-keystore
+  port: 8443
+  port.http: 8080
+
+security.require-ssl: true
 
 ---
 
