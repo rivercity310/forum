@@ -24,7 +24,7 @@ spring:
         format_sql: true
         default_batch_fetch_size: 100
 
-  #sql.init.mode: always     # data.sql
+  sql.init.mode: always     # data.sql
 
   data.rest:
     base-path: /api
@@ -35,6 +35,18 @@ spring:
 
 jwt:
   secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+
+# HTTPs 설정
+server:
+  ssl:
+    key-store: classpath:kanu-keystore.p12
+    key-store-type: PKCS12
+    key-store-password: 8452994ash!
+    key-alias: kanu-keystore
+  port: 8443
+  port.http: 8080
+
+security.require-ssl: true
 
 ---
 

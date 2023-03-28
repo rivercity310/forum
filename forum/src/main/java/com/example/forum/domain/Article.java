@@ -12,7 +12,8 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "hashtag"),
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
 @Entity
 public class Article extends AuditingFields {
@@ -34,6 +35,7 @@ public class Article extends AuditingFields {
 
     @Setter
     @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
     private UserAccount userAccount;
 
     private Article(UserAccount userAccount, String title, String content, String hashtag) {
