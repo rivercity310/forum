@@ -1,6 +1,5 @@
 package com.example.forum.config;
 
-import com.querydsl.core.util.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
