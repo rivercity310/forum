@@ -25,7 +25,6 @@ public class SecurityConfig {
         return http
                 .httpBasic().disable()
                 .csrf().disable()
-                .formLogin().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests(auth -> {
