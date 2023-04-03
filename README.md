@@ -14,7 +14,7 @@ https://ec2-43-200-181-44.ap-northeast-2.compute.amazonaws.com/
 - API: Rest Repositories + HAL Explorer, Swagger 3.0
 - 보안/인증: Spring Security (JWT Authentication)
 - 생산성: Lombok, Spring Boot Actuator/DevTools
-- 배포: AWS EC2
+- 배포: AWS
 - 기타 도구: Vim, GitKraken, Thymeleaf, Bootstrap 5.2
 
 ---
