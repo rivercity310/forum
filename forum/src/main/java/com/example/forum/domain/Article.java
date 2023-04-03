@@ -38,6 +38,11 @@ public class Article extends AuditingFields {
     @JoinColumn(name = "user_id")
     private UserAccount userAccount;
 
+    @Setter
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_bidder_id")
+    private UserAccount userAccount2;
+
     private Article(UserAccount userAccount, String title, String content, String hashtag) {
         this.title = title;
         this.content = content;

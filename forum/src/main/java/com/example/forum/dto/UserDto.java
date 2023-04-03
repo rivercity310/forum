@@ -17,6 +17,8 @@ public class UserDto {
         @Setter private String memo;
         @Setter private String role;
 
+
+
         @Builder
         public SignUp(String userId, String userPassword, String email, String nickname, String memo, String role) {
             this.userId = userId;
