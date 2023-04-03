@@ -38,6 +38,3 @@ out/
 
 ### QueryDSL ###
 src/main/generated
-
-gradle/
-
