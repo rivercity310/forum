@@ -3,8 +3,6 @@
 프로젝트는 구현 및 테스트, 권한 인증 및 보안, 배포 자동화 흐름으로 진행된다. <br/>
 마지막으로, 완성된 Java 프로젝트를 Kotlin으로 마이그레이션 해보는 과정을 거친다.
 
-https://ec2-43-200-181-44.ap-northeast-2.compute.amazonaws.com/
-
 ---
 ## Tech Stack & Version
 - Framework: Spring Boot 3.0.3
