@@ -1,6 +1,7 @@
 package com.example.forum.controller;
 
 import com.example.forum.config.SecurityConfig;
+import com.example.forum.domain.type.SearchType;
 import com.example.forum.dto.ArticleWithCommentsDto;
 import com.example.forum.dto.UserAccountDto;
 import com.example.forum.jwt.JwtTokenProvider;
@@ -36,7 +37,6 @@ class ArticleControllerTest {
     @MockBean private ArticleService articleService;
     @MockBean private PaginationService paginationService;
     @MockBean private JwtTokenProvider jwtTokenProvider;
-
 
     @Test
     @DisplayName("[view] GET : 게시글 리스트 페이지")
@@ -88,6 +88,29 @@ class ArticleControllerTest {
 
         then(articleService).should().searchArticles(null, null, pageable);
         then(paginationService).should().getPaginationBarNumbers(pageable.getPageNumber(), Page.empty().getTotalPages());
+    }
+
+    @Test
+    public void givenSearchKeyword_whenSearchingArticleView_thenReturnsArticleView() throws Exception {
+        // Given
+        SearchType searchType = SearchType.TITLE;
+        String searchValue = "title";
+        given(articleService.searchArticles(eq(searchType), eq(searchValue), any(Pageable.class))).willReturn(Page.empty());
+        given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(0, 1, 2, 3, 4));
+
+        // When & Then
+        mvc.perform(
+                get("/articles")
+                        .queryParam("searchType", searchType.name())
+                        .queryParam("searchValue", searchValue))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("articles/index"))
+                .andExpect(model().attributeExists("articles"))
+                .andExpect(model().attributeExists("searchTypes"));
+
+        then(articleService).should().searchArticles(eq(searchType), eq(searchValue), any(Pageable.class));
+        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
     }
 
     @Test

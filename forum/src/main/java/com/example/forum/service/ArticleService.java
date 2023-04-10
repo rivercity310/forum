@@ -22,17 +22,17 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     @Transactional(readOnly = true)
-    public Page<ArticleDto> searchArticles(SearchType type, String searchKeyword, Pageable pageable) {
-        if (searchKeyword == null || searchKeyword.isBlank()) {
+    public Page<ArticleDto> searchArticles(SearchType type, String searchValue, Pageable pageable) {
+        if (searchValue == null || searchValue.isBlank()) {
             return articleRepository.findAll(pageable).map(ArticleDto::from);
         }
 
         return switch (type) {
-            case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case HASHTAG -> articleRepository.findByHashtag("#" + searchKeyword, pageable).map(ArticleDto::from);
+            case TITLE -> articleRepository.findByTitleContaining(searchValue, pageable).map(ArticleDto::from);
+            case CONTENT -> articleRepository.findByContentContaining(searchValue, pageable).map(ArticleDto::from);
+            case ID -> articleRepository.findByUserAccount_UserIdContaining(searchValue, pageable).map(ArticleDto::from);
+            case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchValue, pageable).map(ArticleDto::from);
+            case HASHTAG -> articleRepository.findByHashtag("#" + searchValue, pageable).map(ArticleDto::from);
         };
     }
 
