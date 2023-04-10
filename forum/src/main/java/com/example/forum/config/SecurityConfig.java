@@ -27,11 +27,12 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .requestMatchers("/user/create", "/user/login", "/articles/**", "/").permitAll()
-                .requestMatchers("/user/memo").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
+                .authorizeHttpRequests(auth -> {
+                        // auth.requestMatchers("/user/create", "/user/login", "/").permitAll();
+                        // auth.requestMatchers("/user", "/user/memo").authenticated();
+                        auth.anyRequest().permitAll();
+                    }
+                )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
