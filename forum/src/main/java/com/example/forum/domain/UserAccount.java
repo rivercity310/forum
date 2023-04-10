@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Getter
 @ToString(callSuper = true)
 @Table(indexes = {
+        @Index(columnList = "userId"),
         @Index(columnList = "email"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
@@ -23,15 +24,21 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class UserAccount extends AuditingFields implements UserDetails {
-    @Id @Column(length = 50, nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Setter @Column(nullable = false, length = 50, unique = true)
     private String userId;
 
     @Setter @Column(nullable = false)
     private String userPassword;
+
     @Setter @Column(length = 100, nullable = false, unique = true)
     private String email;
+
     @Setter @Column(length = 100)
     private String nickname;
+
     @Setter
     private String memo;
 

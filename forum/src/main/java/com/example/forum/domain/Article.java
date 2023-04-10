@@ -35,13 +35,8 @@ public class Article extends AuditingFields {
 
     @Setter
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
-
-    @Setter
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_bidder_id")
-    private UserAccount userAccount2;
 
     private Article(UserAccount userAccount, String title, String content, String hashtag) {
         this.title = title;
