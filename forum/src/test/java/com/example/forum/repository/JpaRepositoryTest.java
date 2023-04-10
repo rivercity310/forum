@@ -3,6 +3,7 @@ package com.example.forum.repository;
 import com.example.forum.config.JpaConfig;
 import com.example.forum.domain.Article;
 import com.example.forum.domain.ArticleComment;
+import com.example.forum.domain.UserAccount;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,13 +44,13 @@ class JpaRepositoryTest {
                 .hasSize(300);
     }
 
-    /*
     @DisplayName("insert 테스트")
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
         // Given
         long previousCount = articleRepository.count();
-        Article article = Article.of("new article", "new content", "#spring");
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("seungsu", "pw", "email", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
         // When
         Article savedArticle = articleRepository.save(article);
@@ -58,8 +59,6 @@ class JpaRepositoryTest {
         assertThat(articleRepository.count())
                 .isEqualTo(previousCount + 1);
     }
-
-     */
 
     @DisplayName("update 테스트")
     @Commit

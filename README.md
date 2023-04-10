@@ -8,17 +8,15 @@
 - Framework: Spring Boot 3.0.3
 - Language: Java 17, Kotlin
 - Test: JUnit5 (BDDMockito)
-- DB/관련기술: MySQL, PostgreSQL, QueryDSL
-- API: Rest Repositories + HAL Explorer, Swagger 3.0
-- 보안/인증: Spring Security (JWT Authentication)
+- DB/관련기술: PostgreSQL, QueryDSL
+- 보안/인증: Spring Security 
 - 생산성: Lombok, Spring Boot Actuator/DevTools
-- 배포: AWS
 - 기타 도구: Vim, GitKraken, Thymeleaf, Bootstrap 5.2
-
+- 배포: AWS
 ---
 
 ## ERD
-![forum-erd](https://user-images.githubusercontent.com/95991654/224528500-f01aa2b4-d204-4643-af02-8d275aeae4d7.svg)
+![forum-erd](document/forum-erd.svg)
 
 <br/>
 
