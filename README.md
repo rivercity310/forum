@@ -1,7 +1,7 @@
-## 프로젝트 개요 & 과정
+## 프로젝트 소개
 스프링 부트를 기반으로 웹 게시판 서비스 전반을 개발하는 개인 프로젝트. <br/>
-프로젝트는 구현 및 테스트, 권한 인증 및 보안, 배포 자동화 흐름으로 진행된다. <br/>
-마지막으로, 완성된 Java 프로젝트를 Kotlin으로 마이그레이션 해보는 과정을 거친다.
+프로젝트는 구현 및 테스트, 권한 인증 및 보안, 배포 자동화 흐름으로 진행되며,
+완성된 Java 프로젝트를 Kotlin으로 마이그레이션 해보는 과정을 거친다.
 
 ---
 ## Tech Stack & Version
@@ -11,7 +11,7 @@
 - DB/관련기술: PostgreSQL, QueryDSL
 - 보안/인증: Spring Security 
 - 생산성: Lombok, Spring Boot Actuator/DevTools
-- 기타 도구: Vim, GitKraken, Thymeleaf, Bootstrap 5.2
+- 기타 도구: Thymeleaf, Bootstrap 5.2
 - 배포: AWS
 ---
 
